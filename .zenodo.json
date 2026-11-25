@@ -1,0 +1,23 @@
+{
+  "title": "La Curva en U Institucional, Volatilidad Política y Dinámica «Red Queen»: Supervivencia Económica Certificada bajo Rendimientos Crecientes",
+  "description": "Motor modular CEGIS-LP (cegis-bellman v0.1, d=1) para síntesis determinista de Barreras de Bellman de Primer Paso y auditoría continua por intervalos libre de libm (Rust y Decimal de 50 dígitos), junto con los modelos económicos de Curva en U institucional (Barro-CES), fragmentación empresarial, alternancia político-fiscal Markoviana y dinámica Red Queen, el archivo congelado de 80/80 certificados (cegis_certificates.json.xz) y el manuscrito reproducible en Typst.",
+  "creators": [
+    {
+      "name": "Segura, Marcelo"
+    }
+  ],
+  "upload_type": "software",
+  "license": "MIT",
+  "keywords": [
+    "Non-convex dynamic programming",
+    "Skiba points",
+    "Bellman barriers",
+    "CEGIS-LP",
+    "Interval arithmetic",
+    "Doob optional stopping",
+    "Institutional U-curve",
+    "Firm fragmentation",
+    "Red Queen dynamics",
+    "Political volatility"
+  ]
+}

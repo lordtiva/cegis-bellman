@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.venv/
+venv/
+
+# Native Rust binaries
+core/rust_verifier/*.dll
+core/rust_verifier/*.so
+core/rust_verifier/*.dylib
+core/rust_verifier/*.lib
+core/rust_verifier/*.a
+core/rust_verifier/*.exp
+core/rust_verifier/*.pdb
+
+# Scratch / caches
+.cache/
+*.tmp
+.*.cache.json

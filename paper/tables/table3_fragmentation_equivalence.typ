@@ -1,0 +1,27 @@
+#figure(
+  table(
+    columns: (0.85fr, 1.15fr, 1.15fr, 1.15fr, 1.35fr),
+    inset: 4.5pt,
+    align: (right, right, right, right, center),
+    stroke: 0.45pt + luma(160),
+    fill: (x, y) => if y == 0 { rgb("#0b2c4d") } else if calc.even(y) { rgb("#f6f9fc") } else { white },
+    table.header(
+      text(fill: white, weight: "bold", size: 8.3pt)[$N_f$],
+      text(fill: white, weight: "bold", size: 8.3pt)[$tau_u^"eq" (tau_p = 0.20)$],
+      text(fill: white, weight: "bold", size: 8.3pt)[$A_e$ (Barro)],
+      text(fill: white, weight: "bold", size: 8.3pt)[$A_e$ (MVS $0.75$)],
+      text(fill: white, weight: "bold", size: 8.3pt)[Régimen en $A_0^"MVS"$],
+    ),
+    [#text(size: 8.1pt)[`1`]], [#text(size: 8.1pt)[`0.0000`]], [#text(size: 8.1pt)[`0.7757`]], [#text(size: 8.1pt)[`0.7500`]], [#text(size: 8.1pt)[Certificado CEGIS]],
+    [#text(size: 8.1pt)[`2`]], [#text(size: 8.1pt)[`0.2343`]], [#text(size: 8.1pt)[`0.5485`]], [#text(size: 8.1pt)[`0.5303`]], [#text(size: 8.1pt)[Certificado CEGIS]],
+    [#text(size: 8.1pt)[`3`]], [#text(size: 8.1pt)[`0.3381`]], [#text(size: 8.1pt)[`0.4479`]], [#text(size: 8.1pt)[`0.4330`]], [#text(size: 8.1pt)[Certificado CEGIS]],
+    [#text(size: 8.1pt)[`4`]], [#text(size: 8.1pt)[`0.4000`]], [#text(size: 8.1pt)[`0.3879`]], [#text(size: 8.1pt)[`0.3750`]], [#text(size: 8.1pt)[Viable VFI (sin cert.)]],
+    [#text(size: 8.1pt)[`6`]], [#text(size: 8.1pt)[`0.4734`]], [#text(size: 8.1pt)[`0.3167`]], [#text(size: 8.1pt)[`0.3062`]], [#text(size: 8.1pt)[Viable VFI (sin cert.)]],
+    [#text(size: 8.1pt)[`9`]], [#text(size: 8.1pt)[`0.5333`]], [#text(size: 8.1pt)[`0.2586`]], [#text(size: 8.1pt)[`0.2500`]], [#text(size: 8.1pt)[Viable VFI (sin cert.)]],
+    [#text(size: 8.1pt)[`16`]], [#text(size: 8.1pt)[`0.6000`]], [#text(size: 8.1pt)[`0.1939`]], [#text(size: 8.1pt)[`0.1875`]], [#text(size: 8.1pt)[Viable VFI (sin cert.)]],
+    [#text(size: 8.1pt)[`25`]], [#text(size: 8.1pt)[`0.6400`]], [#text(size: 8.1pt)[`0.1551`]], [#text(size: 8.1pt)[`0.1500`]], [#text(size: 8.1pt)[Viable VFI (sin cert.)]],
+    [#text(size: 8.1pt)[`56`]], [#text(size: 8.1pt)[`0.6931`]], [#text(size: 8.1pt)[`0.1037`]], [#text(size: 8.1pt)[`0.1002`]], [#text(size: 8.1pt)[Viable VFI (sin cert.)]],
+    [#text(size: 8.1pt)[`57`]], [#text(size: 8.1pt)[`0.6940`]], [#text(size: 8.1pt)[`0.1027`]], [#text(size: 8.1pt)[`0.0993`]], [#text(size: 8.1pt)[Colapso silla-nodo]],
+  ),
+  caption: [Isomorfismo exacto entre fragmentación empresarial $N_f$ y burocracia improductiva equivalente $tau_u^"eq"$ en $tau_p = 0.20$ ($theta = 3\/2$).],
+) <tab:nf_equiv>

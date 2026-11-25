@@ -1,0 +1,27 @@
+#figure(
+  table(
+    columns: (0.75fr, 0.75fr, 0.95fr, 0.95fr, 0.95fr, 0.95fr, 0.8fr, 0.7fr),
+    inset: 4.5pt,
+    align: (right, right, right, right, right, right, right, center),
+    stroke: 0.45pt + luma(160),
+    fill: (x, y) => if y == 0 { rgb("#0b2c4d") } else if calc.even(y) { rgb("#f6f9fc") } else { white },
+    table.header(
+      text(fill: white, weight: "bold", size: 8.1pt)[$p_"rev"$],
+      text(fill: white, weight: "bold", size: 8.1pt)[$p_"ref"$],
+      text(fill: white, weight: "bold", size: 8.1pt)[$S_G^"VFI"$],
+      text(fill: white, weight: "bold", size: 8.1pt)[$S_B^"VFI"$],
+      text(fill: white, weight: "bold", size: 8.1pt)[$max E_"VFI" [tau_H]$],
+      text(fill: white, weight: "bold", size: 8.1pt)[$sup E[tau]_"CEGIS"$],
+      text(fill: white, weight: "bold", size: 8.1pt)[$epsilon.alt_0^"opt"$],
+      text(fill: white, weight: "bold", size: 8.1pt)[$T_0^"opt"$],
+    ),
+    [#text(size: 8.0pt)[`8%`]], [#text(size: 8.0pt)[`0.25`]], [#text(size: 8.0pt)[`0.001668`]], [#text(size: 8.0pt)[`0.005102`]], [#text(size: 8.0pt)[`3.562`]], [#text(size: 8.0pt)[`25.51`]], [#text(size: 8.0pt)[`0.4312`]], [#text(size: 8.0pt)[`11`]],
+    [#text(size: 8.0pt)[`2%`]], [#text(size: 8.0pt)[`1/3`]], [#text(size: 8.0pt)[`0.001526`]], [#text(size: 8.0pt)[`0.005109`]], [#text(size: 8.0pt)[`3.483`]], [#text(size: 8.0pt)[`22.93`]], [#text(size: 8.0pt)[`0.4361`]], [#text(size: 8.0pt)[`10`]],
+    [#text(size: 8.0pt)[`5%`]], [#text(size: 8.0pt)[`1/3`]], [#text(size: 8.0pt)[`0.001586`]], [#text(size: 8.0pt)[`0.005102`]], [#text(size: 8.0pt)[`3.483`]], [#text(size: 8.0pt)[`23.08`]], [#text(size: 8.0pt)[`0.4333`]], [#text(size: 8.0pt)[`10`]],
+    [#text(size: 8.0pt)[`8%`]], [#text(size: 8.0pt)[`1/3`]], [#text(size: 8.0pt)[`0.001638`]], [#text(size: 8.0pt)[`0.005102`]], [#text(size: 8.0pt)[`3.453`]], [#text(size: 8.0pt)[`23.27`]], [#text(size: 8.0pt)[`0.4297`]], [#text(size: 8.0pt)[`10`]],
+    [#text(size: 8.0pt)[`12%`]], [#text(size: 8.0pt)[`1/3`]], [#text(size: 8.0pt)[`0.001713`]], [#text(size: 8.0pt)[`0.005102`]], [#text(size: 8.0pt)[`3.445`]], [#text(size: 8.0pt)[`23.57`]], [#text(size: 8.0pt)[`0.4243`]], [#text(size: 8.0pt)[`10`]],
+    [#text(size: 8.0pt)[`18%`]], [#text(size: 8.0pt)[`1/3`]], [#text(size: 8.0pt)[`0.001798`]], [#text(size: 8.0pt)[`0.005102`]], [#text(size: 8.0pt)[`3.444`]], [#text(size: 8.0pt)[`24.05`]], [#text(size: 8.0pt)[`0.4159`]], [#text(size: 8.0pt)[`10`]],
+    [#text(size: 8.0pt)[`8%`]], [#text(size: 8.0pt)[`0.50`]], [#text(size: 8.0pt)[`0.001616`]], [#text(size: 8.0pt)[`0.005102`]], [#text(size: 8.0pt)[`3.320`]], [#text(size: 8.0pt)[`20.81`]], [#text(size: 8.0pt)[`0.4324`]], [#text(size: 8.0pt)[`9`]],
+  ),
+  caption: [Certificación acoplada de Doob CEGIS-LP ($7\/7$ `PASS`, $A_G = 0.7757, A_B = 0.45$, $M_"pol" = [0.10, 0.18)$) frente a umbrales VFI localmente refinados $S_G^"VFI", S_B^"VFI"$ y máximo esperado $max E_"VFI" [tau_H]$.],
+) <tab:political_markov>
