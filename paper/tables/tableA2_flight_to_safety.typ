@@ -10,7 +10,7 @@
       text(fill: white, weight: "bold", size: 8.0pt)[$p_"rev"$],
       text(fill: white, weight: "bold", size: 8.0pt)[$p_"ref"$],
       text(fill: white, weight: "bold", size: 8.0pt)[$S_G^"VFI"$],
-      text(fill: white, weight: "bold", size: 8.0pt)[$S_B^"VFI"$],
+      text(fill: white, weight: "bold", size: 8.0pt)[$K_B^*$],
       text(fill: white, weight: "bold", size: 8.0pt)[$overline(Delta K'_G)$],
       text(fill: white, weight: "bold", size: 8.0pt)[$max Delta K'_G$],
     ),
@@ -27,5 +27,5 @@
     [#text(size: 7.9pt)[$A_B = 0.095$]], [#text(size: 7.9pt)[`15%`]], [#text(size: 7.9pt)[`1/3`]], [#text(size: 7.9pt)[`0.001977`]], [#text(size: 7.9pt)[Colapso]], [#text(size: 7.9pt)[`+0.01032`]], [#text(size: 7.9pt)[`+0.02127`]],
     [#text(size: 7.9pt)[$A_B = 0.095$]], [#text(size: 7.9pt)[`15%`]], [#text(size: 7.9pt)[`0.10`]], [#text(size: 7.9pt)[`0.002404`]], [#text(size: 7.9pt)[Colapso]], [#text(size: 7.9pt)[`+0.01907`]], [#text(size: 7.9pt)[`+0.03792`]],
   ),
-  caption: [Huida precautoria hacia la seguridad en VFI continua bajo regímenes adversos extremos ($A_B in {0.35, 0.095}$): incremento medio y máximo de inversión $Delta K'_G$ en $M$ frente al equilibrio sin riesgo.],
+  caption: [Huida precautoria hacia la seguridad en VFI continua bajo regímenes adversos extremos ($A_B in {0.35, 0.095}$): incremento medio y máximo de inversión $Delta K\'_G$ en $M$ frente al equilibrio sin riesgo. Aquí $K_B^*$ denota el cruce de $45 degree$ en $B$ (distinto del quiebre de Skiba $S_("B,kink")$); los valores se evalúan sobre la grilla logarítmica base de VFI (sin refinamiento local en $[0.0012, 0.0022]$, a diferencia de la Tabla 4).],
 ) <tab:fts_extreme>

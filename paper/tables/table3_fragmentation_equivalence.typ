@@ -15,7 +15,7 @@
     [#text(size: 8.1pt)[`1`]], [#text(size: 8.1pt)[`0.0000`]], [#text(size: 8.1pt)[`0.7757`]], [#text(size: 8.1pt)[`0.7500`]], [#text(size: 8.1pt)[Certificado CEGIS]],
     [#text(size: 8.1pt)[`2`]], [#text(size: 8.1pt)[`0.2343`]], [#text(size: 8.1pt)[`0.5485`]], [#text(size: 8.1pt)[`0.5303`]], [#text(size: 8.1pt)[Certificado CEGIS]],
     [#text(size: 8.1pt)[`3`]], [#text(size: 8.1pt)[`0.3381`]], [#text(size: 8.1pt)[`0.4479`]], [#text(size: 8.1pt)[`0.4330`]], [#text(size: 8.1pt)[Certificado CEGIS]],
-    [#text(size: 8.1pt)[`4`]], [#text(size: 8.1pt)[`0.4000`]], [#text(size: 8.1pt)[`0.3879`]], [#text(size: 8.1pt)[`0.3750`]], [#text(size: 8.1pt)[Viable VFI (sin cert.)]],
+    [#text(size: 8.1pt)[`4`]], [#text(size: 8.1pt)[`0.4000`]], [#text(size: 8.1pt)[`0.3879`]], [#text(size: 8.1pt)[`0.3750`]], [#text(size: 8.1pt)[Cert. (Barro) / Sin cert. (MVS)]],
     [#text(size: 8.1pt)[`6`]], [#text(size: 8.1pt)[`0.4734`]], [#text(size: 8.1pt)[`0.3167`]], [#text(size: 8.1pt)[`0.3062`]], [#text(size: 8.1pt)[Viable VFI (sin cert.)]],
     [#text(size: 8.1pt)[`9`]], [#text(size: 8.1pt)[`0.5333`]], [#text(size: 8.1pt)[`0.2586`]], [#text(size: 8.1pt)[`0.2500`]], [#text(size: 8.1pt)[Viable VFI (sin cert.)]],
     [#text(size: 8.1pt)[`16`]], [#text(size: 8.1pt)[`0.6000`]], [#text(size: 8.1pt)[`0.1939`]], [#text(size: 8.1pt)[`0.1875`]], [#text(size: 8.1pt)[Viable VFI (sin cert.)]],

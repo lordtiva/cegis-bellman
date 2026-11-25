@@ -15,6 +15,7 @@ Outputs:
 from __future__ import annotations
 
 import json
+import math
 import os
 import sys
 import numpy as np
@@ -220,7 +221,7 @@ def make_fig2(vfi_data: dict) -> None:
     ax1.plot(4.0, effective_A(0.20, 0.0, 4.0), "o", color=AMBER, ms=6.5, zorder=6)
     ax1.annotate(
         r"$N_f=4 \Leftrightarrow \tau_u^{\mathrm{eq}}=0.40$",
-        xy=(4.0, effective_A(0.20, 0.0, 4.0)), xytext=(1.35, 0.24),
+        xy=(4.0, effective_A(0.20, 0.0, 4.0)), xytext=(2.1, 0.14),
         arrowprops=dict(arrowstyle="->", color=AMBER, lw=1.0),
         fontsize=8.2, color=AMBER, weight="bold",
         bbox=dict(boxstyle="round,pad=0.2", fc="white", ec=AMBER, alpha=0.92),
@@ -334,12 +335,12 @@ def make_fig3(vfi_data: dict, extras: dict) -> None:
     vfi_by_key = {(round(r["p_rev"], 4), round(r["p_ref"], 4)): r for r in pm["vfi"]["certified_grid_vfi"]}
 
     prev_pct = np.array([100.0 * r["p_rev"] for r in cert_rows])
-    e_doob = np.array([r["E_tau_opt"] for r in cert_rows])
+    e_doob = np.array([math.ceil(r["E_tau_opt"] * 100.0) / 100.0 for r in cert_rows])
     e_vfi = np.array([vfi_by_key[(round(r["p_rev"], 4), round(r["p_ref"], 4))]["max_E_tau_H_vfi_Mpol"] for r in cert_rows])
 
     l1, = ax2.plot(prev_pct, e_doob, "o-", color=NAVY, lw=2.2, ms=6.0, label=r"Cota Doob CEGIS-LP ($\sup E[\tau]$)")
     for x, y in zip(prev_pct, e_doob):
-        off = (-15, 8) if abs(x - 8.0) < 0.1 else (0, 8)
+        off = (14, -14) if abs(x - 8.0) < 0.1 else (0, 8)
         ax2.annotate(f"{y:.2f}", (x, y), textcoords="offset points", xytext=off, ha="center", fontsize=7.8, color=NAVY)
 
     ax2.set_ylim(21.6, 25.1)
@@ -386,7 +387,7 @@ def make_fig4(vfi_data: dict, extras: dict) -> None:
 
     # Panel A: Pure Red Queen trajectories
     ax1.axvspan(w0, w1, color=AMBER, alpha=0.14, label=rf"Ola tecnológica $g_H = 5\%$ ($t \in [{w0}, {w1})$)")
-    ax1.axhspan(b["S_hat_L"], b["S_hat_H"], color=CRIMSON, alpha=0.10, label=r"Ventana «Red Queen» $(\hat{S}_L, \hat{S}_H)$ para $\tau_u=0.55$")
+    ax1.axhspan(b["S_hat_L"], b["S_hat_H"], color=CRIMSON, alpha=0.10, label=r"Ventana «Red Queen» $(\hat{S}_L, \hat{K}_H^*)$ para $\tau_u=0.55$")
     ax1.axhline(b["S_hat_L"], color=NAVY, ls=":", lw=1.2)
     ax1.axhline(b["S_hat_H"], color=CRIMSON, ls="--", lw=1.3)
 
@@ -402,7 +403,7 @@ def make_fig4(vfi_data: dict, extras: dict) -> None:
         arrowprops=dict(arrowstyle="->", color="black", lw=0.9),
         fontsize=8.2, weight="bold",
     )
-    ax1.text(30.5, b["S_hat_H"] * 1.12, rf"$\hat{{S}}_H = {b['S_hat_H']:.4f}$", color=CRIMSON, fontsize=7.8)
+    ax1.text(28.0, b["S_hat_H"] * 0.83, rf"$\hat{{K}}_H^* = {b['S_hat_H']:.4f}$", color=CRIMSON, fontsize=7.8)
     ax1.text(30.5, b["S_hat_L"] * 0.78, rf"$\hat{{S}}_L = {b['S_hat_L']:.4f}$", color=NAVY, fontsize=7.8)
 
     ax1.set_yscale("log")
@@ -426,19 +427,20 @@ def make_fig4(vfi_data: dict, extras: dict) -> None:
         sub = [r for r in rq_cert if r["g_H"] == gH and r["certified"]]
         sub.sort(key=lambda r: r["tau_u"])
         xs = [r["tau_u"] for r in sub]
-        ys = [r["E_tau_opt"] for r in sub]
+        ys = [math.ceil(r["E_tau_opt"] * 100.0) / 100.0 for r in sub]
         ax2.plot(
             xs, ys,
             marker=g_markers[gH], color=g_colors[gH], lw=2.1, ms=6.0,
             label=rf"$g_H = {int(round(100*gH))}\%$ (certificado)",
         )
         for x, y in zip(xs, ys):
+            y_lbl = math.ceil(y * 10.0) / 10.0
             off = y_offsets[gH]
             if x == 0.0:
                 off = {0.03: (8, -11), 0.05: (8, -2), 0.07: (-4, 7)}[gH]
             elif x >= 0.29:
-                off = {0.03: (6, -11), 0.05: (-28, -2), 0.07: (-26, 7)}[gH]
-            ax2.annotate(f"{y:.1f}", (x, y), textcoords="offset points", xytext=off, fontsize=7.5, color=g_colors[gH])
+                off = {0.03: (6, -11), 0.05: (6, -3), 0.07: (-26, 7)}[gH]
+            ax2.annotate(f"{y_lbl:.1f}", (x, y), textcoords="offset points", xytext=off, fontsize=7.5, color=g_colors[gH])
 
     ax2.axvspan(0.30, 0.42, color=CRIMSON, alpha=0.10)
     ax2.axvline(0.30, color=CRIMSON, ls="--", lw=1.6, label=r"Frontera certificada $\tau_u^{\max} = 0.30$")

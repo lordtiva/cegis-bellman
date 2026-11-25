@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import math
 import os
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -40,13 +41,13 @@ def gen_table1() -> None:
       text(fill: white, weight: "bold", size: 8.5pt)[Propiedad o Cota Demostrada],
       text(fill: white, weight: "bold", size: 8.5pt)[Método de Certificación],
     ),
-    [#text(size: 8.3pt)[*Teorema 1* (4.1)]], [#text(size: 8.3pt)[Curva en U $A_e (tau_p, tau_u, N_f)$]], [#text(size: 8.3pt)[$tau_p^* = 0.20, A_e^"pico" = 0.7757$; umbrales $A_"rep" = 0.0735, A_"SN" = 0.0995, A_* = 0.0996, A_"cross" = 0.1104$]], [#text(size: 8.3pt)[Análisis cerrado + bifurcación CES]],
+    [#text(size: 8.3pt)[*Teorema 1* (4.1)]], [#text(size: 8.3pt)[Curva en U $A_e (tau_p, tau_u, N_f)$]], [#text(size: 8.3pt)[$tau_p^* = 0.20, A_e^"pico" = 0.7757$; umbrales $A_"rep" = 0.0735, A_"SN" = 0.0995, A_* = 0.0996$]], [#text(size: 8.3pt)[Análisis cerrado + bifurcación CES]],
     [#text(size: 8.3pt)[*Proposición 1* (4.2)]], [#text(size: 8.3pt)[Fragmentación $N_f <-> tau_u^"eq"$]], [#text(size: 8.3pt)[Isomorfismo exacto; colapso silla-nodo $N_(f,*) = 56.69 < N_(f,"SN") = 56.79$]], [#text(size: 8.3pt)[Homogeneidad $theta=3\/2$ + punto fijo]],
     [#text(size: 8.3pt)[*Proposición 2* (5.2)]], [#text(size: 8.3pt)[Atlas $A_e in [0.385, 0.780]$ ($63$ b.)]], [#text(size: 8.3pt)[$T_"cert" in [4, 7]$; expansión $53.9 times$ en área del plano $(tau_p, tau_u)$]], [#text(size: 8.3pt)[CEGIS-LP `log-PWL` + B&B sin `libm`]],
     [#text(size: 8.3pt)[*Proposición 3* (5.3)]], [#text(size: 8.3pt)[Atlas $N_f in [1.00, 4.060]$ ($63$ b.)]], [#text(size: 8.3pt)[Escape certificado hasta $N_f^"max" = 4.060$ ($tau_u^"eq" = 40.3%$)]], [#text(size: 8.3pt)[Isomorfismo + auditoría 1D continua]],
-    [#text(size: 8.3pt)[*Proposición 4* (6.2--6.4)]], [#text(size: 8.3pt)[Markov político $p_"rev" in [2%, 18%]$]], [#text(size: 8.3pt)[$7\/7$ parejas Doob acopladas: $sup E[tau] in [20.81, 25.51]$; huida precautoria]], [#text(size: 8.3pt)[Converso de Doob + LP acoplado + VFI]],
+    [#text(size: 8.3pt)[*Proposición 4* (6.2--6.4)]], [#text(size: 8.3pt)[Markov político $p_"rev" in [2%, 18%]$]], [#text(size: 8.3pt)[$7\/7$ parejas Doob acopladas: $sup E[tau] in [20.82, 25.52]$; huida precautoria]], [#text(size: 8.3pt)[Converso de Doob + LP acoplado + VFI]],
     [#text(size: 8.3pt)[*Teorema 2* (7.1)]], [#text(size: 8.3pt)[Invarianza homotética _Red Queen_]], [#text(size: 8.3pt)[Reducción exacta 2D $-> $ 1D en $hat(K)_t = K_t \/ E_t$; error Bellman $5.68 times 10^(-14)$]], [#text(size: 8.3pt)[Reescalamiento homogéneo + VFI]],
-    [#text(size: 8.3pt)[*Proposición 5* (7.3)]], [#text(size: 8.3pt)[Superficie $(g_H, tau_u)$ ($9\/9$ b.)]], [#text(size: 8.3pt)[Escape certificado hasta $tau_u^"max" = 0.30$ ($sup E[tau] in [15.25, 31.84]$)]], [#text(size: 8.3pt)[Markov Doob CEGIS-LP + Rust audit]],
+    [#text(size: 8.3pt)[*Proposición 5* (7.3)]], [#text(size: 8.3pt)[Superficie $(g_H, tau_u)$ ($9\/9$ b.)]], [#text(size: 8.3pt)[Escape certificado hasta $tau_u^"max" = 0.30$ ($sup E[tau] in [15.26, 31.84]$)]], [#text(size: 8.3pt)[Markov Doob CEGIS-LP + Rust audit]],
     [#text(size: 8.3pt)[*Motor `cegis-bellman`* (8)]], [#text(size: 8.3pt)[Archivo `80/80` certificados]], [#text(size: 8.3pt)[Cero errores en Rust sin `libm` y en Python puro; `7/7` tests]], [#text(size: 8.3pt)[Intervalos IEEE-754 + SHA-256]],
   ),
   caption: [Mapa epistemológico de los resultados del manuscrito según dominio y método de validación.],
@@ -121,6 +122,8 @@ def gen_table3(vfi_data: dict) -> None:
         ae_ben = r["A_e_bench075"]
         if ae_ben >= 0.385:
             reg = "Certificado CEGIS" if r["viable_bench"] else "Solo Barro CEGIS"
+        elif ae_bar >= 0.385:
+            reg = "Cert. (Barro) / Sin cert. (MVS)"
         elif r["viable_bench"]:
             reg = "Viable VFI (sin cert.)"
         else:
@@ -157,7 +160,7 @@ def gen_table4(vfi_data: dict, extras: dict) -> None:
         '      text(fill: white, weight: "bold", size: 8.1pt)[$p_"rev"$],',
         '      text(fill: white, weight: "bold", size: 8.1pt)[$p_"ref"$],',
         '      text(fill: white, weight: "bold", size: 8.1pt)[$S_G^"VFI"$],',
-        '      text(fill: white, weight: "bold", size: 8.1pt)[$S_B^"VFI"$],',
+        '      text(fill: white, weight: "bold", size: 8.1pt)[$K_B^*$],',
         '      text(fill: white, weight: "bold", size: 8.1pt)[$max E_"VFI" [tau_H]$],',
         '      text(fill: white, weight: "bold", size: 8.1pt)[$sup E[tau]_"CEGIS"$],',
         '      text(fill: white, weight: "bold", size: 8.1pt)[$epsilon.alt_0^"opt"$],',
@@ -169,19 +172,20 @@ def gen_table4(vfi_data: dict, extras: dict) -> None:
         v = vfi_map[k]
         f = fine_map[k]
         prf_str = "1/3" if abs(k[1] - 1.0 / 3.0) < 1e-3 else f"{k[1]:.2f}"
+        e_tau_up = math.ceil(c["E_tau_opt"] * 100.0) / 100.0
         lines.append(
             f"    [#text(size: 8.0pt)[`{100*k[0]:.0f}%`]], "
             f"[#text(size: 8.0pt)[`{prf_str}`]], "
             f"[#text(size: 8.0pt)[`{f['S_G_vfi_fine']:.6f}`]], "
             f"[#text(size: 8.0pt)[`{f['S_B_vfi_fine']:.6f}`]], "
             f"[#text(size: 8.0pt)[`{v['max_E_tau_H_vfi_Mpol']:.3f}`]], "
-            f"[#text(size: 8.0pt)[`{c['E_tau_opt']:.2f}`]], "
+            f"[#text(size: 8.0pt)[`{e_tau_up:.2f}`]], "
             f"[#text(size: 8.0pt)[`{c['eps0_opt']:.4f}`]], "
             f"[#text(size: 8.0pt)[`{c['T0_opt']}`]],"
         )
     lines.extend([
         "  ),",
-        r'  caption: [Certificación acoplada de Doob CEGIS-LP ($7\/7$ `PASS`, $A_G = 0.7757, A_B = 0.45$, $M_"pol" = [0.10, 0.18)$) frente a umbrales VFI localmente refinados $S_G^"VFI", S_B^"VFI"$ y máximo esperado $max E_"VFI" [tau_H]$.],',
+        r'  caption: [Certificación acoplada de Doob CEGIS-LP ($7\/7$ `PASS`, $A_G = 0.7757, A_B = 0.45$, $M_"pol" = [0.10, 0.18)$) frente a $S_G^"VFI"$ (malla refinada), el cruce de $45 degree$ en régimen adverso $K_B^*$ (distinto del punto de Skiba $S_("B,kink")$ en Segura, 2026) y $max E_"VFI" [tau_H]$. Las cotas superiores $sup E[tau]_"CEGIS" = T_0^"opt"\/epsilon.alt_0^"opt"$ se redondean estrictamente hacia $+oo$.],',
         ") <tab:political_markov>",
     ])
     _write_typ("table4_political_markov.typ", "\n".join(lines))
@@ -204,7 +208,7 @@ def gen_table5(vfi_data: dict) -> None:
         '      text(fill: white, weight: "bold", size: 8.1pt)[$g_H$],',
         '      text(fill: white, weight: "bold", size: 8.1pt)[$tau_u$],',
         '      text(fill: white, weight: "bold", size: 8.1pt)[$hat(S)_L$],',
-        '      text(fill: white, weight: "bold", size: 8.1pt)[$hat(S)_H$],',
+        '      text(fill: white, weight: "bold", size: 8.1pt)[$hat(K)_H^*$],',
         '      text(fill: white, weight: "bold", size: 8.1pt)[$max E_"VFI"$],',
         '      text(fill: white, weight: "bold", size: 8.1pt)[$sup E[tau]_"CEGIS"$],',
         '      text(fill: white, weight: "bold", size: 8.1pt)[$T_0^"opt"$],',
@@ -218,7 +222,8 @@ def gen_table5(vfi_data: dict) -> None:
             sl_s = f"`{v['S_hat_L']:.5f}`"
             sh_s = f"`{v['S_hat_H']:.5f}`"
             ev_s = f"`{v['max_E_tau_H_vfi_Mpol']:.3f}`"
-            ec_s = f"`{r['E_tau_opt']:.2f}`"
+            ec_up = math.ceil(r["E_tau_opt"] * 100.0) / 100.0
+            ec_s = f"`{ec_up:.2f}`"
             t0_s = f"`{r['T0_opt']}`"
             st_s = "PASS"
         else:
@@ -240,7 +245,7 @@ def gen_table5(vfi_data: dict) -> None:
         )
     lines.extend([
         "  ),",
-        r'  caption: [Superficie *Red Queen* en $(g_H, tau_u)$ ($g_L = 2%, p_"wave" = 10%, p_"end" = 25%, M_"pol" = [0.10, 0.18)$): umbrales VFI en unidades de eficiencia, cota certificada de Doob (`9/9` hasta $tau_u = 0.30$) y límite de certificabilidad en $tau_u = 0.40$.],',
+        r'  caption: [Superficie *Red Queen* en $(g_H, tau_u)$ ($g_L = 2%, p_"wave" = 10%, p_"end" = 25%, M_"pol" = [0.10, 0.18)$): umbral lento $hat(S)_L$, umbral de reversión de deriva de $45 degree$ durante la ola $hat(K)_H^*$, cota certificada de Doob (`9/9` hasta $tau_u = 0.30$, redondeada hacia $+oo$) y límite de certificabilidad en $tau_u = 0.40$.],',
         ") <tab:red_queen>",
     ])
     _write_typ("table5_red_queen_markov.typ", "\n".join(lines))
@@ -342,7 +347,7 @@ def gen_tableA2(vfi_data: dict) -> None:
         '      text(fill: white, weight: "bold", size: 8.0pt)[$p_"rev"$],',
         '      text(fill: white, weight: "bold", size: 8.0pt)[$p_"ref"$],',
         '      text(fill: white, weight: "bold", size: 8.0pt)[$S_G^"VFI"$],',
-        '      text(fill: white, weight: "bold", size: 8.0pt)[$S_B^"VFI"$],',
+        '      text(fill: white, weight: "bold", size: 8.0pt)[$K_B^*$],',
         '      text(fill: white, weight: "bold", size: 8.0pt)[$overline(Delta K\'_G)$],',
         '      text(fill: white, weight: "bold", size: 8.0pt)[$max Delta K\'_G$],',
         "    ),",
@@ -361,7 +366,7 @@ def gen_tableA2(vfi_data: dict) -> None:
         )
     lines.extend([
         "  ),",
-        "  caption: [Huida precautoria hacia la seguridad en VFI continua bajo regímenes adversos extremos ($A_B in {0.35, 0.095}$): incremento medio y máximo de inversión $Delta K'_G$ en $M$ frente al equilibrio sin riesgo.],",
+        r'  caption: [Huida precautoria hacia la seguridad en VFI continua bajo regímenes adversos extremos ($A_B in {0.35, 0.095}$): incremento medio y máximo de inversión $Delta K\'_G$ en $M$ frente al equilibrio sin riesgo. Aquí $K_B^*$ denota el cruce de $45 degree$ en $B$ (distinto del quiebre de Skiba $S_("B,kink")$); los valores se evalúan sobre la grilla logarítmica base de VFI (sin refinamiento local en $[0.0012, 0.0022]$, a diferencia de la Tabla 4).],',
         ") <tab:fts_extreme>",
     ])
     _write_typ("tableA2_flight_to_safety.typ", "\n".join(lines))
