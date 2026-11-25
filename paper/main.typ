@@ -167,7 +167,7 @@
   #v(0.2em)
   #text(size: 9.6pt, fill: luma(85))[Manuscrito Técnico Autónomo — Arquitectura `cegis-bellman` v0.1 ($d=1$)]
   #v(0.2em)
-  #text(size: 9.0pt, fill: luma(105))[Noviembre de 2026 #h(8pt) · #h(8pt) Reproducibilidad Determinista y Verificación Libre de `libm`]
+  #text(size: 9.0pt, fill: luma(105))[Noviembre de 2026 #h(6pt) · #h(6pt) #link("https://doi.org/10.5281/zenodo.24536780")[DOI: `10.5281/zenodo.24536780`] #h(6pt) · #h(6pt) Reproducibilidad Determinista y Verificación Libre de `libm`]
 ]
 
 #v(0.75em)
@@ -686,7 +686,7 @@ Para corroborar independientemente la reducción homotética exacta establecida 
 
 == Protocolo de Reproducción Integral y Verificación Automatizada
 
-Todos los certificados, cifras numéricas, tablas y figuras del presente manuscrito se reproducen deterministamente desde la raíz del repositorio `cegis-bellman` sin alterar el archivo congelado `certificates/cegis_certificates.json.xz` ($376,368$ bytes, SHA-256 `a2f9707b1c7b2ed8...`):
+Todos los certificados, cifras numéricas, tablas y figuras del presente manuscrito se reproducen deterministamente desde la raíz del repositorio `cegis-bellman` (#link("https://github.com/lordtiva/cegis-bellman")[`github.com/lordtiva/cegis-bellman`], archivo permanente en Zenodo con Concept DOI #link("https://doi.org/10.5281/zenodo.24536780")[`10.5281/zenodo.24536780`]) sin alterar el archivo congelado `certificates/cegis_certificates.json.xz` ($376,368$ bytes, SHA-256 `a2f9707b1c7b2ed8...`):
 
 1. *Auditoría independiente de los $80\/80$ certificados congelados (Rust sin `libm` + VFI):*
    ```

@@ -1,8 +1,11 @@
 # La Curva en U Institucional, Volatilidad Política y Dinámica «Red Queen»: Supervivencia Económica Certificada bajo Rendimientos Crecientes
 
+[![DOI](https://zenodo.org/badge/1471985363.svg)](https://doi.org/10.5281/zenodo.24536780)
 [![Verify CEGIS-Bellman Certificates](https://github.com/lordtiva/cegis-bellman/actions/workflows/verify.yml/badge.svg)](https://github.com/lordtiva/cegis-bellman/actions/workflows/verify.yml)
 
 Motor modular **CEGIS-LP** (`cegis-bellman` v0.1, $d=1$) para síntesis determinista de **Barreras de Bellman de Primer Paso** y auditoría continua por intervalos libre de `libm` (en Rust y `Decimal` de 50 dígitos), archivo congelado de **`80/80` certificados** (`certificates/cegis_certificates.json.xz`), `4` figuras, `8` tablas en Typst y manuscrito reproducible ([`paper/main.typ`](paper/main.typ) / [`paper/main.pdf`](paper/main.pdf)), construido sobre *Minimum Viable Scale* de Milei y Reidel (2026) y la arquitectura de Segura (2026, Paper 1: [`10.5281/zenodo.24464158`](https://doi.org/10.5281/zenodo.24464158)).
+
+- **Archivo permanente en Zenodo:** Concept DOI (todas las versiones): [`10.5281/zenodo.24536780`](https://doi.org/10.5281/zenodo.24536780) (versión inicial `v0.1.0`: [`10.5281/zenodo.24536781`](https://doi.org/10.5281/zenodo.24536781)).
 
 ---
 
@@ -95,6 +98,19 @@ python -c "import typst; typst.compile('paper/main.typ', output='paper/main.pdf'
 ```
 
 ---
+
+## Cita sugerida (Zenodo)
+```bibtex
+@software{segura_2026_cegis_bellman,
+  author       = {Segura, Marcelo},
+  title        = {La Curva en U Institucional, Volatilidad Política y Dinámica «Red Queen»: Supervivencia Económica Certificada bajo Rendimientos Crecientes},
+  year         = 2026,
+  publisher    = {Zenodo},
+  version      = {v0.1.1},
+  doi          = {10.5281/zenodo.24536780},
+  url          = {https://doi.org/10.5281/zenodo.24536780}
+}
+```
 
 ## Licencia
 
